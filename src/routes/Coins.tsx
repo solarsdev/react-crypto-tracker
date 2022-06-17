@@ -68,10 +68,14 @@ const Coins = ({ toggleTheme }: { toggleTheme: () => void }) => {
         {isLoading
           ? 'Loading...'
           : coins?.map((coin) => (
-              <Link key={coin.id} to={`/${coin.id}`} state={{ name: coin.name }}>
+              <Link
+                key={coin.id}
+                to={`/${coin.id}`}
+                state={{ name: coin.name }}
+              >
                 <Coin>
                   <img
-                    src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                    src={`https://raw.githubusercontent.com/ErikThiart/cryptocurrency-icons/master/32/${coin.name.toLowerCase()}.png`}
                     alt={coin.name}
                   />
                   {coin.name} &rarr;
