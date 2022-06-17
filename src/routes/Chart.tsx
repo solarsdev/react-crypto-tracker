@@ -8,8 +8,9 @@ import { useTheme } from 'styled-components';
 const Chart = ({ coinId }: ChartProps) => {
   const { isLoading, data: historicals } = useQuery<GetCoinHistorical[]>(
     ['getCoinHistorical', coinId],
-    () => getCoinHistorical(coinId),
+    () => getCoinHistorical(coinId)
   );
+  console.log(historicals);
   const currentTheme = useTheme();
 
   return isLoading ? (

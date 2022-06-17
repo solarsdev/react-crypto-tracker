@@ -1,5 +1,12 @@
 import { useQuery } from 'react-query';
-import { Routes, Route, useLocation, useParams, Link, useMatch } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useLocation,
+  useParams,
+  Link,
+  useMatch,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import { getCoin, getTicker } from '../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -90,12 +97,10 @@ const Coin = ({ toggleTheme }: { toggleTheme: () => void }) => {
 
   const { isLoading: isGetCoinLoading, data: coinData } = useQuery<GetCoin>(
     ['getCoin', coinId],
-    () => getCoin(coinId),
+    () => getCoin(coinId)
   );
-  const { isLoading: isGetTickerLoading, data: tickerData } = useQuery<GetTicker>(
-    ['getTicker', coinId],
-    () => getTicker(coinId),
-  );
+  const { isLoading: isGetTickerLoading, data: tickerData } =
+    useQuery<GetTicker>(['getTicker', coinId], () => getTicker(coinId));
 
   const isLoading = isGetCoinLoading || isGetTickerLoading;
 
@@ -107,7 +112,9 @@ const Coin = ({ toggleTheme }: { toggleTheme: () => void }) => {
             <FontAwesomeIcon icon={faList} />
           </BackBtn>
         </Link>
-        <Title>{state?.name ? state?.name : isLoading ? coinId : coinData?.name}</Title>
+        <Title>
+          {state?.name ? state?.name : isLoading ? coinId : coinData?.name}
+        </Title>
         <PaletteBtn onClick={toggleTheme}>
           <FontAwesomeIcon icon={faPalette} />
         </PaletteBtn>
@@ -150,7 +157,7 @@ const Coin = ({ toggleTheme }: { toggleTheme: () => void }) => {
             </Link>
           </Tabs>
           <Routes>
-            <Route path='chart' element={<Chart coinId={coinId} />} />
+            {/* <Route path='chart' element={<Chart coinId={coinId} />} /> */}
             <Route path='price' element={<Price tickerData={tickerData} />} />
           </Routes>
         </>
